@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder stringBuilder = new StringBuilder();
 
         String someMessage = " This is a message ";
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 10; i++){
             stringBuilder.append(someMessage);
         }
         mMessageWindow.setText(stringBuilder.toString());

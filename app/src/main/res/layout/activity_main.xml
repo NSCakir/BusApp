@@ -18,7 +18,7 @@
         android:textSize="40sp" />
 
     <LinearLayout
-        android:id="@+id/d11_parentlayout"
+        android:id="@+id/stops_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"/>

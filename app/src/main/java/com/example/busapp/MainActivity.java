@@ -1,11 +1,11 @@
 package com.example.busapp;
 
-import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.widget.TextView;
+        import android.os.Bundle;
+        import android.widget.TextView;
 
-import org.w3c.dom.Text;
+        import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 

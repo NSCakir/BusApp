@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    private static final String[] STOPS = new String[] {
+            "Stop 1", "Stop 2", "Stop 3", "Stop 4", "Stop 5"
+    };
 
     private void notify(String title, String content) {
         NotificationManager manager =

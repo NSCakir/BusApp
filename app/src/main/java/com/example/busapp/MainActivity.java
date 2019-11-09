@@ -24,13 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         mTitleWindow.setText("Stops");
-        StringBuilder stringBuilder = new StringBuilder();
 
-        String someMessage = " This is a message ";
-        for(int i = 0; i < 10; i++){
-            stringBuilder.append(someMessage);
-        }
-        mMessageWindow.setText(stringBuilder.toString());
+
+
     }
 
     private void notify(String title, String content) {

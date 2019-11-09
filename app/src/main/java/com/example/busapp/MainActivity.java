@@ -2,12 +2,17 @@ package com.example.busapp;
 
         import androidx.appcompat.app.AppCompatActivity;
 
+        import android.app.Notification;
+        import android.app.NotificationManager;
+        import android.content.Context;
         import android.os.Bundle;
         import android.widget.TextView;
 
         import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView mTitleWindow;
+    private TextView mMessageWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,5 +31,16 @@ public class MainActivity extends AppCompatActivity {
             stringBuilder.append(someMessage);
         }
         mMessageWindow.setText(stringBuilder.toString());
+    }
+
+    private void notify(String title, String content) {
+        NotificationManager manager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification notification = new Notification.Builder(getApplicationContext()).
+                setContentTitle(title).
+                setContentText(content).
+                build();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        manager.notify(0, notification);
     }
 }

@@ -16,5 +16,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TextView mTitleWindow = (TextView) findViewById(R.id.messageWindow);
         TextView mMessageWindow = (TextView) findViewById(R.id.titleWindow);
+
+
+        mTitleWindow.setText("Stops");
+        StringBuilder stringBuilder = new StringBuilder();
     }
 }

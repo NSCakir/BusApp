@@ -29,8 +29,7 @@
         <Button
             android:id="@+id/messageWindow"
             android:layout_width="1000dp"
-            android:layout_height="1000dp"
-            android:text="temp"/>
+            android:layout_height="1000dp"/>
     </ScrollView>
 
 

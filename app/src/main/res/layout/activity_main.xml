@@ -18,6 +18,7 @@
         android:textSize="40sp" />
 
     <LinearLayout
+        android:id="@+id/d11_parentlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"/>
@@ -27,9 +28,9 @@
 
 
         <Button
-            android:id="@+id/messageWindow"
             android:layout_width="1000dp"
             android:layout_height="1000dp"/>
+
     </ScrollView>
 
 

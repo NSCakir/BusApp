@@ -31,8 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
-            android:layout_weight="1"
-
+            android:layout_weight="1"/>
     </LinearLayout>
     <!-- This ScrollView will hold a LinearLayout containing the confession posts. -->
     <ScrollView

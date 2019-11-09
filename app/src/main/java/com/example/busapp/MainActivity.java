@@ -4,7 +4,11 @@ package com.example.busapp;
 
         import android.app.Notification;
         import android.app.NotificationManager;
+        import android.app.PendingIntent;
         import android.content.Context;
+        import android.content.Intent;
+        import android.content.res.Resources;
+        import android.graphics.BitmapFactory;
         import android.os.Bundle;
         import android.widget.TextView;
 
@@ -24,19 +28,38 @@ public class MainActivity extends AppCompatActivity {
 
 
         mTitleWindow.setText("Stops");
+        StringBuilder stringBuilder = new StringBuilder();
 
+        String someMessage = " This is a message ";
+        for(int i = 0; i < 10; i++){
+            stringBuilder.append(someMessage);
+        }
+        mMessageWindow.setText(stringBuilder.toString());
 
-
+        notify("test", "test");
     }
 
     private void notify(String title, String content) {
-        NotificationManager manager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notification = new Notification.Builder(getApplicationContext()).
-                setContentTitle(title).
-                setContentText(content).
-                build();
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        manager.notify(0, notification);
+        Context ctx = getApplicationContext();
+        Intent notificationIntent = new Intent(ctx, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(ctx,
+                0, notificationIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+
+        NotificationManager nm = (NotificationManager) ctx
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Resources res = ctx.getResources();
+        Notification.Builder builder = new Notification.Builder(ctx);
+
+        builder.setContentIntent(contentIntent)
+                .setSmallIcon(R.drawable.bus)
+                .setWhen(System.currentTimeMillis())
+                .setAutoCancel(true)
+                .setContentTitle(title)
+                .setContentText(content);
+        Notification n = builder.build();
+
+        nm.notify(0, n);
     }
 }

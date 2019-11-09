@@ -1,0 +1,6 @@
+https://feeds.transloc.com/3/vehicle_statuses?agencies=84
+https://feeds.transloc.com/3/routes?agencies=84
+https://feeds.transloc.com/3/announcements?contents=true&agencies=84
+https://feeds.transloc.com/3/segments?agencies=84
+https://feeds.transloc.com/3/stops?include_routes=true&agencies=84
+https://feeds.transloc.com/3/agencies?agencies=84

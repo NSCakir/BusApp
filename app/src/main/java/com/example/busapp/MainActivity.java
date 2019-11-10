@@ -9,6 +9,18 @@ package com.example.busapp;
         import android.widget.ArrayAdapter;
         import android.widget.AutoCompleteTextView;
         import android.widget.TextView;
+        import android.widget.Button;
+
+        import android.content.Intent;
+        import android.view.View;
+
+        import android.widget.Toast;
+
+
+
+        import android.view.View.OnClickListener;
+        import android.widget.Toast;
+
 
         import org.w3c.dom.Text;
 
@@ -26,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         TextView mTitleWindow = (TextView) findViewById(R.id.titleWindow);
         mTitleWindow.setText("Stops");
 
+
+        //Adapter for auto complete feature
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, STOPS);
         AutoCompleteTextView textView = (AutoCompleteTextView)
@@ -33,12 +47,27 @@ public class MainActivity extends AppCompatActivity {
         textView.setAdapter(adapter);
 
 
+        //Button Creator that sends User to SetActivity page
+        Button button1 = (Button) findViewById(R.id.stops123);
+
+
+        button1.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent i = new Intent(MainActivity.this, SetActivity.class);
+                startActivity(i);
+                Toast.makeText(getApplicationContext(),
+                        "You are home", Toast.LENGTH_LONG)
+                        .show();
+
+            }
+
+        });
+
+
+
 
 
     }
-
-
-
     private static final String[] STOPS = new String[] {
             "Stop 1", "Stop 2", "Stop 3", "Stop 4", "Stop 5"
     };

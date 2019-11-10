@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class VehicleStatusParser
 { 
     private static ArrayList<MinimalBus> vsList;
+    private static Set<Integer> nextStopSet;
 
     // this method takes a string which is the entire JSON object
     // and populates the ArrayList instance variable.
@@ -42,6 +43,7 @@ public class VehicleStatusParser
 
             minBus = new MinimalBus(nextStopID);
             this.vsList.add(minBus);
+            nextStopSet.add(minBus.nextStop());
           }
      } catch (Exception e) {
         e.printStackTrace();
@@ -51,6 +53,10 @@ public class VehicleStatusParser
     // getter method for the list of VehicleStatuses
     public ArrayList<MinimalBus> getVsList(){
         return vsList;
+    }
+
+    public boolean isTimeToCatchBus(int selectedStop){
+        return nextStopSet.contains(selectedStop);
     }
 
     // print out a list of VehicleStatus
@@ -72,5 +78,8 @@ public class VehicleStatusParser
         VehicleStatusParser vsp = new VehicleStatusParser(content);
         ArrayList<MinimalBus> minBusList = vsp.getVsList();
         printOutMinimalBuses(minBusList);
+
+        System.out.println("Should we catch the bus now?");
+        System.out.println(isTimeToCatchBus(4097654));
     } 
 } 

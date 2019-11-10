@@ -1,8 +1,8 @@
 package com.example.busapp;
 
-public class minimalBus {
+public class MinimalBus {
 	private int nextStop;
-	public minimalBus(int nextStop){
+	public MinimalBus(int nextStop){
 		this.nextStop = nextStop;
 	}
 	public int nextStop(){

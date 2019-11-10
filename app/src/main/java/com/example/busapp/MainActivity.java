@@ -9,6 +9,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
@@ -22,8 +23,16 @@ public class MainActivity extends AppCompatActivity {
     private TextView mMessageWindow;
     private NotificationChannel notificationChannel;
 
+    private static final String[] STOPS = new String[] {
+            "Stop 1", "Stop 2", "Stop 3", "Stop 4", "Stop 5"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
+
         super.onCreate(savedInstanceState);
         createNotificationChannel("test", "this is a test channel");
         Thread updateThread = new Thread(new UpdateThread());
@@ -31,11 +40,15 @@ public class MainActivity extends AppCompatActivity {
         TextView mTitleWindow = (TextView) findViewById(R.id.titleWindow);
         mTitleWindow.setText("Stops");
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_dropdown_item_1line, STOPS);
-//        AutoCompleteTextView textView =
-//                findViewById(R.id.stops_list);
-//        textView.setAdapter(adapter);
+        URLRequest urlr = new URLRequest("https://feeds.transloc.com/3/routes?agencies=84");
+        String json = urlr.get();
+        mTitleWindow.setText(json);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, STOPS);
+        AutoCompleteTextView textView = (AutoCompleteTextView)
+                findViewById(R.id.stops_list);
+        textView.setAdapter(adapter);
 
 
         notify("test","test");

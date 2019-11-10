@@ -12,10 +12,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject; 
 import org.json.simple.parser.*; 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BusStopParser
 { 
     private static ArrayList<BusStop> bsList;
+    private static HashMap<String, Integer> stopNameMap;
 
     // this method takes a string which is the entire JSON object
     // and populates the ArrayList instance variable.
@@ -24,6 +26,7 @@ public class BusStopParser
         jsp = new JSONParser();
         Object obj;
         bsList = new ArrayList<BusStop>();
+        stopNameMap = new HashMap<String, Integer>();
         try {
           obj = jsp.parse(sss);
           JSONObject jo = (JSONObject) obj;
@@ -43,6 +46,7 @@ public class BusStopParser
 
             bs = new BusStop(name, busStopID);
             this.bsList.add(bs);
+            stopNameMap.put(name, busStopID);
           }
      } catch (Exception e) {
         e.printStackTrace();
@@ -64,6 +68,10 @@ public class BusStopParser
         }
     }
 
+    public static int getIDForStopName(String name){
+        return (int) stopNameMap.get(name);
+    }
+
     // this main method serves as an example of how to use the BusStopParser
     public static void main(String[] args) throws Exception
     { 
@@ -74,5 +82,8 @@ public class BusStopParser
         BusStopParser bsp = new BusStopParser(content);
         ArrayList<BusStop> bsl = bsp.getBsList();
         printOutBusStops(bsp.getBsList());
+        // demonstration of getIDForStopName
+        System.out.println("The Princeton Junction stop has ID#");
+        System.out.println(bsp.getIDForStopName("Princeton Junction"));
     } 
 }

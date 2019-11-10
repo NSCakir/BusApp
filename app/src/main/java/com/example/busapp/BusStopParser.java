@@ -1,4 +1,5 @@
 package com.example.busapp;
+import com.example.busapp.BusStop;
 
 import org.json.simple.parser.ParseException;
 import java.io.FileReader;
@@ -16,6 +17,8 @@ public class BusStopParser
 { 
     private static ArrayList<BusStop> bsList;
 
+    // this method takes a string which is the entire JSON object
+    // and populates the ArrayList instance variable.
     public BusStopParser(String sss){
         JSONParser jsp;
         jsp = new JSONParser();
@@ -46,10 +49,12 @@ public class BusStopParser
      }
     }
 
+    // getter method for the list of BusStop
     public ArrayList<BusStop> getBsList(){
         return bsList;
     }
   
+    // print out a list of BusStop
     private static void printOutBusStops(ArrayList<BusStop> bsList) {
         for (BusStop b : bsList){
           System.out.println("Bus Stop:");
@@ -59,11 +64,13 @@ public class BusStopParser
         }
     }
 
+    // this main method serves as an example of how to use the BusStopParser
     public static void main(String[] args) throws Exception
     { 
         // See how I use BusStopParser to return an ArrayList from a string.
         String filePath = "stops_test.json";
         String content = new String ( Files.readAllBytes( Paths.get(filePath) ) );
+        //particularly this line
         BusStopParser bsp = new BusStopParser(content);
         ArrayList<BusStop> bsl = bsp.getBsList();
         printOutBusStops(bsp.getBsList());

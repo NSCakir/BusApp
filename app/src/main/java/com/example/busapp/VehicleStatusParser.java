@@ -1,3 +1,6 @@
+package com.example.busapp;
+import com.example.busapp.MinimalBus;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,6 +16,8 @@ public class VehicleStatusParser
 { 
     private static ArrayList<MinimalBus> vsList;
 
+    // this method takes a string which is the entire JSON object
+    // and populates the ArrayList instance variable.
     public VehicleStatusParser(String sss){
         JSONParser jsp;
         jsp = new JSONParser();
@@ -43,10 +48,12 @@ public class VehicleStatusParser
      }
     }
 
+    // getter method for the list of VehicleStatuses
     public ArrayList<MinimalBus> getVsList(){
         return vsList;
     }
 
+    // print out a list of VehicleStatus
     private static void printOutMinimalBuses(ArrayList<MinimalBus> vsList) {
         for (MinimalBus minBus : vsList){
           System.out.println("Next Bus Stop:");
@@ -55,10 +62,13 @@ public class VehicleStatusParser
         }
     }
 
+    // this main method serves as an example of how to use the BusStopParser
     public static void main(String[] args) throws Exception
     { 
+        // See how I use VehicleStatusParser to return an ArrayList from a string.
         String filePath = "vehicle_statuses_test.json";
         String content = new String ( Files.readAllBytes( Paths.get(filePath) ) );
+        //particularly this line
         VehicleStatusParser vsp = new VehicleStatusParser(content);
         ArrayList<MinimalBus> minBusList = vsp.getVsList();
         printOutMinimalBuses(minBusList);
